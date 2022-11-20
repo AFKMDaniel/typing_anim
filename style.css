@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.screen {
+    list-style: none;
+    aspect-ratio: 16 / 9;
+    width: 800px;
+    color: #397c4b;
+    background-color: #000;
+    padding: 0 0 0 25px;
+    font-size: 15px;
+    line-height: 50px;
+    font-family: 'Roboto Mono', monospace;
+    overflow: hidden;
+    position: relative;
+}
+
+.screen::before,
+.screen::after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    left: 0;
+    content: "";
+}
+
+.screen li:first-child span {
+    position: relative;
+}
+
+.screen li:first-child span::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-left: 5px solid #397c4b;
+    top: 10px;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #000;
+    /* Время анимации typing - время для печати строки, время анимации slideCursor = время анимации typing * 8,
+    время анимации blinkAnim - неизменно, задержка анимации blinkAnim = время анимации typing + время анимации slideCursor */
+    animation:typing steps(76) 4s 9 forwards, slideCursor steps(8) 32s forwards,  blinkAnim step-start 1s infinite 36s; 
+}
+
+.screen::after {
+    /* Время этой анимации должно быть равно времени анимации slideCursor */
+    animation: slideBlock steps(8) 32s forwards;
+    top: 50px;
+}
+
+.screen::before {
+    top: -450px;
+    z-index: 10;
+    /* Время этой анимации неизменно, задержка = время анимации slideCursor + время анимации typing + желаемая задержка перед очисткой */
+    animation: clearScreen steps(9) 9s forwards 66s;
+}
+
+@keyframes typing {
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes slideCursor {
+    100% {
+        top: 412px;
+    }
+}
+
+@keyframes slideBlock {
+    100% {
+        top: 450px;
+    }
+}
+
+@keyframes clearScreen {
+    100% {
+        top: 0px;
+    }
+}
+
+@keyframes blinkAnim {
+    50% {
+      opacity: 0;
+    }
+  }
