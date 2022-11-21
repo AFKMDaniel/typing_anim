@@ -9,9 +9,10 @@ const needToClear = true; // нужно ли очищать экран
 const clearDelay = 0; // задержка очистки в секундах
 //-------------------------------------------------
 
-let stringsCount;
+let allowChangeSteps = false;
 
 document.documentElement.style.setProperty('--blink-anim-delay', (text.length * typingSpeed).toString() + 's');
+document.documentElement.style.setProperty('--clear-anim-delay', clearDelay.toString() + 's');
 
 function enterText () {
     return new Promise((res,rej) => {
@@ -27,15 +28,19 @@ function enterText () {
 }
 
 function setClearAnimSteps() {
-    stringsCount = screen.clientHeight / 30;
+    const stringsCount = screen.clientHeight / 30;
     document.documentElement.style.setProperty('--clear-anim-steps', stringsCount.toString());
 }
 
-window.addEventListener('resize', setClearAnimSteps);
+window.addEventListener('resize', () => {
+    if(allowChangeSteps){
+        setClearAnimSteps();
+    }
+});
 
 enterText().then(() => {
     if(needToClear){
+        allowChangeSteps = true;
         setClearAnimSteps();
-        document.documentElement.style.setProperty('--clear-anim-delay', clearDelay.toString() + 's');
     }
 });
