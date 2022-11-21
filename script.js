@@ -1,5 +1,6 @@
 const screen = document.querySelector('.screen');
 const screenSpan = document.querySelector('.screen span');
+const wrapper = document.querySelector('.wrapper');
 
 //-------------------------------------------------
 // В переменную ниже поместите нужный текст
@@ -10,6 +11,7 @@ const clearDelay = 0; // задержка очистки в секундах
 //-------------------------------------------------
 
 let allowChangeSteps = false;
+let allowScroll = true;
 
 document.documentElement.style.setProperty('--blink-anim-delay', (text.length * typingSpeed).toString() + 's');
 document.documentElement.style.setProperty('--clear-anim-delay', clearDelay.toString() + 's');
@@ -18,7 +20,11 @@ function enterText () {
     return new Promise((res,rej) => {
         for (let i = 1; i <= text.length; i++){
             setTimeout(() => {
+                if(allowScroll){
+                    wrapper.scrollTop = wrapper.scrollHeight;
+                }
                 screenSpan.innerHTML += text[i-1];
+                
                 if(i === text.length){
                     res('Конец');
                 }
@@ -37,6 +43,10 @@ window.addEventListener('resize', () => {
         setClearAnimSteps();
     }
 });
+
+wrapper.addEventListener('scroll', () => {
+    allowScroll = false;
+})
 
 enterText().then(() => {
     if(needToClear){

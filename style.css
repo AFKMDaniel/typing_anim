@@ -20,6 +20,13 @@ body {
     border: 1px solid #fff;
     overflow: auto;
     margin: 50px auto;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+}
+
+/* for Chrome, Safari, and Opera */
+.wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .screen {
@@ -31,7 +38,6 @@ body {
     font-size: 15px;
     position: relative;
     text-align: justify;
-    position: relative;
 }
 
 .screen::after {
