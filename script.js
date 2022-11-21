@@ -12,7 +12,6 @@ const clearDelay = 0; // задержка очистки в секундах
 let stringsCount;
 
 document.documentElement.style.setProperty('--blink-anim-delay', (text.length * typingSpeed).toString() + 's');
-document.documentElement.style.setProperty('--clear-anim-delay', clearDelay.toString() + 's');
 
 function enterText () {
     return new Promise((res,rej) => {
@@ -37,5 +36,6 @@ window.addEventListener('resize', setClearAnimSteps);
 enterText().then(() => {
     if(needToClear){
         setClearAnimSteps();
+        document.documentElement.style.setProperty('--clear-anim-delay', clearDelay.toString() + 's');
     }
 });
