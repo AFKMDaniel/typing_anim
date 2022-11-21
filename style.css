@@ -12,19 +12,26 @@
 body {
     background: #000;
 }
-.screen {
+
+.wrapper {
     width: 90%;
-    max-width: 600px;
+    max-width: 400px;
+    height: 300px;
+    border: 1px solid #fff;
+    overflow: auto;
+    margin: 50px auto;
+}
+
+.screen {
+    width: 100%;
     color: #397c4b;
     background-color: #000;
     line-height: 30px;
     font-family: 'Source Code Pro', monospace;
     font-size: 15px;
-    overflow: hidden;
     position: relative;
     text-align: justify;
     position: relative;
-    margin: 50px auto;
 }
 
 .screen::after {
