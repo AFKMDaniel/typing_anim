@@ -3,90 +3,50 @@
     padding: 0;
 }
 
+:root {
+    --blink-anim-delay : 0s;
+    --clear-anim-steps: 0;
+    --clear-anim-delay: 0s;
+}
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
     background: #000;
 }
 .screen {
-    list-style: none;
+    width: 90%;
+    max-width: 600px;
     color: #397c4b;
     background-color: #000;
-    padding: 0 25px;
     line-height: 30px;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Source Code Pro', monospace;
     font-size: 15px;
     overflow: hidden;
     position: relative;
-}
-
-.screen::before,
-.screen::after {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    left: 0;
-    content: "";
-}
-
-.screen li:first-child span {
+    text-align: justify;
     position: relative;
-}
-
-.screen li:first-child span::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-left: 5px solid #397c4b;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    background-color: #000;
-    /* Время анимации typing - время для печати строки, время анимации slideCursor = время анимации typing * 8,
-    время анимации blinkAnim - неизменно, задержка анимации blinkAnim = время анимации typing + время анимации slideCursor */
-    animation:typing steps(76) 4s 9 forwards, slideCursor steps(8) 32s forwards,  blinkAnim step-start 1s infinite 36s; 
+    margin: 50px auto;
 }
 
 .screen::after {
-    /* Время этой анимации должно быть равно времени анимации slideCursor */
-    animation: slideBlock steps(8) 32s forwards;
-    top: calc(100% / 9);
-}
-
-.screen::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 5;
+    position: absolute;
+    left: 0;
     top: -100%;
-    z-index: 10;
-    /* Время этой анимации неизменно, задержка = время анимации slideCursor + время анимации typing + желаемая задержка перед очисткой */
-    animation: clearScreen steps(9) 9s forwards 66s;
+    animation: clearAnim steps(var(--clear-anim-steps)) calc(1s * var(--clear-anim-steps)) forwards var(--clear-anim-delay);
 }
 
-@keyframes typing {
-    100% {
-        left: 100%;
-    }
-}
-
-@keyframes slideCursor {
-    100% {
-        top: calc(900% * 1.4) ;
-    }
-}
-
-@keyframes slideBlock {
-    100% {
-        top: 100%;
-    }
-}
-
-@keyframes clearScreen {
-    100% {
-        top: 0;
-    }
+.screen span::after {
+    content: "";
+    display: inline-block;
+    width: 5px;
+    background: #397c4b;
+    height: 20px;
+    animation: blinkAnim step-start 1s infinite var(--blink-anim-delay);
+    transform: translateY(25%);
 }
 
 @keyframes blinkAnim {
@@ -94,3 +54,9 @@ body {
       opacity: 0;
     }
   }
+
+@keyframes clearAnim {
+    100% {
+        top: 0;
+    }
+}
