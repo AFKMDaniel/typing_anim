@@ -12,12 +12,13 @@ const clearDelay = 5; // задержка очистки в секундах
 let timeoutIds;
 let allowScroll;
 
-document.documentElement.style.setProperty('--blink-anim-delay', (text.length * typingSpeed).toString() + 's');
 document.documentElement.style.setProperty('--clear-anim-delay', (clearDelay).toString() + 's');
 
 function enterText () {
     timeoutIds = [];
     document.documentElement.style.setProperty('--clear-anim-steps', '0');
+    document.documentElement.style.setProperty('--blink-anim-time', '0s');
+    screenSpan.offsetHeight;
     screenSpan.innerHTML = '';
     for (let i = 1; i <= text.length; i++){
         const timeoutId = setTimeout(() => {
@@ -34,6 +35,7 @@ function enterText () {
             screenSpan.innerHTML += text[i-1];
 
             if(i === text.length){
+                document.documentElement.style.setProperty('--blink-anim-time', '1s');
                 if(needToClear){
                     const stringsCount = screen.clientHeight / 30;
                     document.documentElement.style.setProperty('--clear-anim-steps', stringsCount.toString());

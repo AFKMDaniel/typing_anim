@@ -4,7 +4,7 @@
 }
 
 :root {
-    --blink-anim-delay : 0s;
+    --blink-anim-time: 0s;
     --clear-anim-steps: 0;
     --clear-anim-delay: 0s;
 }
@@ -60,7 +60,7 @@ body {
     width: 5px;
     background: #397c4b;
     height: 20px;
-    animation: blinkAnim step-start 1s infinite var(--blink-anim-delay);
+    animation: blinkAnim step-start var(--blink-anim-time) infinite;
     transform: translateY(25%);
 }
 
