@@ -4,9 +4,9 @@ const wrapper = document.querySelector('.wrapper');
 const text = screenSpan.innerHTML;
 
 //-------------------------------------------------
-const typingSpeed = 0.025; // время появления одного символа в секундах
+const typingSpeed = 0.075; // время появления одного символа в секундах
 const needToClear = true; // нужно ли очищать экран
-const clearDelay = 0; // задержка очистки в секундах
+const clearDelay = 5; // задержка очистки в секундах
 //-------------------------------------------------
 
 let timeoutIds;

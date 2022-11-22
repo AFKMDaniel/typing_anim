@@ -20,6 +20,7 @@ body {
     border: 1px solid #fff;
     overflow: auto;
     margin: 50px auto;
+    padding:0 25px;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
 }
