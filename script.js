@@ -18,7 +18,6 @@ function enterText () {
     timeoutIds = [];
     document.documentElement.style.setProperty('--clear-anim-steps', '0');
     document.documentElement.style.setProperty('--blink-anim-time', '0s');
-    screenSpan.offsetHeight;
     screenSpan.innerHTML = '';
     for (let i = 1; i <= text.length; i++){
         const timeoutId = setTimeout(() => {
