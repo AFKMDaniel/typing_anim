@@ -22,7 +22,7 @@ function enterText () {
     for (let i = 1; i <= text.length; i++){
         const timeoutId = setTimeout(() => {
             
-            if(i === 1) {
+            if(i === 25) {
                 allowScroll = true;
             }
 
