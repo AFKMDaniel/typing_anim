@@ -54,7 +54,9 @@ document.documentElement.style.setProperty(
 
 function enterText() {
 	timeoutId = setTimeout(() => {
-		allowScroll = true;
+		if (currentChar === 24) {
+			allowScroll = true;
+		}
 		screenSpan.innerHTML += text[currentChar];
 		if (allowScroll) {
 			wrapper.scrollTop = wrapper.scrollHeight;
