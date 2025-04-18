@@ -5,7 +5,7 @@ const text = screenSpan.innerHTML;
 screenSpan.innerHTML = "";
 
 //-------------------------------------------------
-const typingSpeed = 0.01; // время появления одного символа в секундах
+const typingSpeed = 0.1; // время появления одного символа в секундах
 const needToClear = true; // нужно ли очищать экран
 const clearDelay = 5; // задержка очистки в секундах
 //-------------------------------------------------
